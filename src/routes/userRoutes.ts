@@ -1,9 +1,36 @@
-import { Router } from "express";
-import { createUser, getUsers } from "../controllers/userController.js";
+/** @format */
 
-const router = Router();
+import express from "express";
+import {
+  registerUser,
+  loginUser,
+  getUserById,
+  updateUser,
+  getAllUsers,
+  deleteUser,
+} from "../controllers/userController.js";
+import { protect, isAdmin } from "../middleware/authMiddleware.js";
 
-router.post("/create", createUser);
-router.get("/", getUsers);
+const router = express.Router();
+
+// Public routes
+router.post("/register", (req, res) => {
+  console.log(req.body);
+});
+router.post("/login", loginUser);
+
+// Agency routes
+router.get("/agency/profile/:id", protect, getUserById);
+router.put("/agency/profile/:id", protect, updateUser);
+
+// Traveler routes
+router.get("/traveler/profile/:id", protect, getUserById);
+router.put("/traveler/profile/:id", protect, updateUser);
+
+// Admin routes
+router.get("/", protect, isAdmin, getAllUsers);
+router.get("/:id", protect, isAdmin, getUserById);
+router.put("/:id", protect, isAdmin, updateUser);
+router.delete("/:id", protect, isAdmin, deleteUser);
 
 export default router;
