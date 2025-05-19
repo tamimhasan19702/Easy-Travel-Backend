@@ -48,3 +48,19 @@ export const isAdmin = (req: Request, res: Response, next: NextFunction) => {
     res.status(403).json({ message: "Access denied. Admin only." });
   }
 };
+
+export const isAgency = (req: Request, res: Response, next: NextFunction) => {
+  if (req.user && req.user.role === "agency") {
+    next();
+  } else {
+    res.status(403).json({ message: "Access denied. Agency only." });
+  }
+};
+
+export const isTraveler = (req: Request, res: Response, next: NextFunction) => {
+  if (req.user && req.user.role === "traveler") {
+    next();
+  } else {
+    res.status(403).json({ message: "Access denied. Traveler only." });
+  }
+};

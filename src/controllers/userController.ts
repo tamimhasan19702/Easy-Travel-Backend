@@ -73,15 +73,6 @@ export const getAllUsers = async (_req: Request, res: Response) => {
 
 export const getUserById = async (req: Request, res: Response) => {
   try {
-    const requester = req.user as IUser;
-
-    if (
-      requester.role !== "admin" &&
-      requester._id.toString() !== req.params.id
-    ) {
-      return res.status(403).json({ message: "Access denied" });
-    }
-
     const user = await User.findById(req.params.id).select("-password");
     if (!user) return res.status(404).json({ message: "User not found" });
 
@@ -93,15 +84,6 @@ export const getUserById = async (req: Request, res: Response) => {
 
 export const updateUser = async (req: Request, res: Response) => {
   try {
-    const requester = req.user as IUser;
-
-    if (
-      requester.role !== "admin" &&
-      requester._id.toString() !== req.params.id
-    ) {
-      return res.status(403).json({ message: "Access denied" });
-    }
-
     const updates = req.body;
 
     if (updates.password) {

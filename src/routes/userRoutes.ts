@@ -9,8 +9,12 @@ import {
   getAllUsers,
   deleteUser,
 } from "../controllers/userController.js";
-import { protect, isAdmin } from "../middleware/authMiddleware.js";
-import { json } from "stream/consumers";
+import {
+  protect,
+  isAdmin,
+  isAgency,
+  isTraveler,
+} from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
@@ -19,12 +23,12 @@ router.post("/register", registerUser);
 router.post("/login", loginUser);
 
 // Agency routes
-router.get("/agency/profile/:id", protect, getUserById);
-router.put("/agency/profile/:id", protect, updateUser);
+router.get("/agency/profile/:id", protect, isAgency, getUserById);
+router.put("/agency/profile/:id", protect, isAgency, updateUser);
 
 // Traveler routes
-router.get("/traveler/profile/:id", protect, getUserById);
-router.put("/traveler/profile/:id", protect, updateUser);
+router.get("/traveler/profile/:id", protect, isTraveler, getUserById);
+router.put("/traveler/profile/:id", protect, isTraveler, updateUser);
 
 // Admin routes
 router.get("/", protect, isAdmin, getAllUsers);
