@@ -2,8 +2,8 @@
 
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
-import { User } from "../models/userModel";
-import { IUser } from "../models/userModel";
+import { User } from "../models/userModel.js";
+import { IUser } from "../models/userModel.js";
 
 declare module "express-serve-static-core" {
   interface Request {

@@ -10,13 +10,12 @@ import {
   deleteUser,
 } from "../controllers/userController.js";
 import { protect, isAdmin } from "../middleware/authMiddleware.js";
+import { json } from "stream/consumers";
 
 const router = express.Router();
 
 // Public routes
-router.post("/register", (req, res) => {
-  console.log(req.body);
-});
+router.post("/register", registerUser);
 router.post("/login", loginUser);
 
 // Agency routes
