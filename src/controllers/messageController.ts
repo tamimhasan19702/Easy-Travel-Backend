@@ -2,7 +2,6 @@
 
 import { Request, Response } from "express";
 import { Message } from "../models/messageModel.js";
-import { IMessage } from "../models/messageModel.js";
 
 export const createMessage = async (req: Request, res: Response) => {
   try {

@@ -33,7 +33,7 @@ const notificationSchema = new Schema<NotificationDocument>(
   { timestamps: true }
 );
 
-export default mongoose.model<NotificationDocument>(
+export const Notification = mongoose.model<NotificationDocument>(
   "Notification",
   notificationSchema
 );

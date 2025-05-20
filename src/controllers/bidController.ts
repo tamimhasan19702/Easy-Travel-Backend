@@ -2,7 +2,6 @@
 
 import { Request, Response } from "express";
 import { Bid } from "../models/bidModel.js";
-import { IBid } from "../models/bidModel.js";
 
 export const createBid = async (req: Request, res: Response) => {
   try {
