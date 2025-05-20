@@ -6,7 +6,7 @@ import {
   getAllTripRequests,
   getTripRequestById,
   updateTripRequest,
-  deleteTripReuest,
+  deleteTripRequest,
   getTripRequestsByTraveler,
 } from "../controllers/tripRequestController.js";
 import {
@@ -18,18 +18,20 @@ import {
 
 const router = express.Router();
 
+router.use(protect);
+
 // agency routes
-router.get("/agency", protect, isAgency, getAllTripRequests);
+router.get("/agency", isAgency, getAllTripRequests);
 
 //traveler routes
-router.post("/traveler", protect, isTraveler, createTripRequest);
-router.get("/traveler", protect, isTraveler, getTripRequestsByTraveler);
-router.put("/traveler/:id", protect, isTraveler, updateTripRequest);
+router.post("/traveler", isTraveler, createTripRequest);
+router.get("/traveler", isTraveler, getTripRequestsByTraveler);
+router.put("/traveler/:id", isTraveler, updateTripRequest);
 // admin routes
 
-router.get("/", protect, isAdmin, getAllTripRequests);
-router.get("/:id", protect, isAdmin, getTripRequestById);
-router.put("/:id", protect, isAdmin, updateTripRequest);
-router.delete("/:id", protect, isAdmin, deleteTripReuest);
+router.get("/", isAdmin, getAllTripRequests);
+router.get("/:id", isAdmin, getTripRequestById);
+router.put("/:id", isAdmin, updateTripRequest);
+router.delete("/:id", isAdmin, deleteTripRequest);
 
 export default router;

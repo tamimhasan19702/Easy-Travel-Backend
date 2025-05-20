@@ -95,7 +95,7 @@ export const updateTripRequest = async (req: Request, res: Response) => {
   }
 };
 
-export const deleteTripReuest = async (req: Request, res: Response) => {
+export const deleteTripRequest = async (req: Request, res: Response) => {
   try {
     const tripRequest = await TripRequest.findById(req.params.id);
     if (!tripRequest) {

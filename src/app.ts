@@ -8,6 +8,7 @@ import cors from "cors";
 import morgan from "morgan";
 import userRoutes from "./routes/userRoutes.js";
 import tripRequestRoutes from "./routes/tripRequestRoutes.js";
+import bidRoutes from "./routes/bidRoutes.js";
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.use(morgan("dev"));
 // Routes
 app.use("/api/users", userRoutes);
 app.use("/api/trip-requests", tripRequestRoutes);
+app.use("/api/bid", bidRoutes);
 
 // Health check or root route
 app.get("/", (_req, res) => {
