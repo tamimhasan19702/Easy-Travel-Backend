@@ -6,6 +6,7 @@ import tripRequestRoutes from "./tripRequestRoutes.js";
 import bidRoutes from "./bidRoutes.js";
 import messageRoutes from "./messageRoutes.js";
 import notificationRoutes from "./notificationRoutes.js";
+import disputeRoutes from "./disputeRoutes.js";
 
 const router = express.Router();
 
@@ -14,5 +15,6 @@ router.use("/trip-requests", tripRequestRoutes);
 router.use("/bids", bidRoutes);
 router.use("/messages", messageRoutes);
 router.use("/notifications", notificationRoutes);
+router.use("/disputes", disputeRoutes);
 
 export default router;

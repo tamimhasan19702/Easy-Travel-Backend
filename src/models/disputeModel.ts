@@ -30,4 +30,7 @@ const disputeSchema = new Schema<DisputeDocument>(
   { timestamps: true }
 );
 
-export default mongoose.model<DisputeDocument>("Dispute", disputeSchema);
+export const Dispute = mongoose.model<DisputeDocument>(
+  "Dispute",
+  disputeSchema
+);
