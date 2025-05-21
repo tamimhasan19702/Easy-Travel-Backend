@@ -22,7 +22,7 @@ const adminSettingSchema = new Schema<AdminSettingDocument>(
   { timestamps: true }
 );
 
-export default mongoose.model<AdminSettingDocument>(
+export const AdminSetting = mongoose.model<AdminSettingDocument>(
   "AdminSetting",
   adminSettingSchema
 );

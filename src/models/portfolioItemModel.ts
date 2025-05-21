@@ -20,7 +20,7 @@ const portfolioItemSchema = new Schema<PortfolioItemDocument>(
   { timestamps: true }
 );
 
-export default mongoose.model<PortfolioItemDocument>(
+export const PortfolioItem = mongoose.model<PortfolioItemDocument>(
   "PortfolioItem",
   portfolioItemSchema
 );
