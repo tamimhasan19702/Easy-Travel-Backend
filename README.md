@@ -1,95 +1,142 @@
-# [Node MVC Boilerplate](#)
+<!-- @format -->
 
-A Simple Node.js Model-View-Controller boilerplate application.
+# 🌍 Travel Booking API Documentation
 
-## Overview
+Welcome to the API documentation for the Travel Booking platform, powered by **Node.js**, **Express**, and **MongoDB**.
 
-This is a simple boilerplate project using the MVC (Model-View-Controller) pattern with Node.js, Express.js, MongoDB, and TypeScript. It provides a foundational setup to help you get started with building scalable and maintainable web applications.
+---
 
-## Features
+## 🔐 Authentication
 
--   MVC architecture for better organization and scalability.
--   Built with TypeScript for a type-safe and maintainable codebase.
--   Express.js for creating robust and flexible routes.
--   MongoDB with Mongoose for schema-based data modeling.
--   Environment configuration with `dotenv`.
--   Clean and maintainable folder structure.
+All non-public routes require authentication using JWT tokens. Ensure the token is included in the `Authorization` header as follows:
 
-## Directory Structure
+---
 
-```bash
-src/
-│
-├── controllers/    # Contains request handling logic for routes
-├── models/         # Contains Mongoose schemas and models
-├── routes/         # Defines the application's routes
-├── services/       # Contains business logic and data processing
-├── views/          # Contains view templates (if using server-side rendering)
-├── middlewares/    # Custom middleware for the application
-├── config/         # Configuration files and setup (e.g., database connection)
-├── utils/          # Utility functions and helpers
-│
-├── app.ts          # Main application entry point
-└── public/         # Publicly accessible files (e.g., images, static assets)
-```
+## 🧑‍💼 User Routes
 
-## Prerequisites
+| Method | Endpoint       | Description         | Access     |
+| ------ | -------------- | ------------------- | ---------- |
+| POST   | /api/users     | Create new user     | Public     |
+| GET    | /api/users     | Get all users       | Admin      |
+| GET    | /api/users/:id | Get user by ID      | Admin/User |
+| PUT    | /api/users/:id | Update user profile | User       |
+| DELETE | /api/users/:id | Delete user         | Admin      |
 
-Make sure you have the following installed:
+---
 
--   [Node.js](https://nodejs.org/)
--   [MongoDB](https://www.mongodb.com/)
+## 📩 Trip Request Routes
 
-## Getting Started
+| Method | Endpoint               | Description           | Access         |
+| ------ | ---------------------- | --------------------- | -------------- |
+| POST   | /api/trip-requests     | Create trip request   | Traveler       |
+| GET    | /api/trip-requests     | Get all trip requests | Admin          |
+| GET    | /api/trip-requests/:id | Get trip by ID        | Traveler/Admin |
+| PUT    | /api/trip-requests/:id | Update trip request   | Traveler       |
+| DELETE | /api/trip-requests/:id | Delete trip request   | Traveler/Admin |
 
-1. Clone the repository:
+---
 
-    ```bash
-    git clone https://github.com/yourusername/node-mvc-boilerplate.git
-    ```
+## 💼 Bid Routes
 
-2. Install dependencies:
+| Method | Endpoint      | Description   | Access |
+| ------ | ------------- | ------------- | ------ |
+| POST   | /api/bids     | Place a bid   | Agency |
+| GET    | /api/bids     | Get all bids  | Admin  |
+| GET    | /api/bids/:id | Get bid by ID | Agency |
+| DELETE | /api/bids/:id | Delete bid    | Agency |
 
-    ```bash
-    npm install
-    ```
+---
 
-3. Create a `.env` file in the root of the project with the following variables:
+## 💬 Message Routes
 
-    ```bash
-    MONGO_URI=mongodb://localhost:27017/yourdbname
-    PORT=3000
-    ```
+| Method | Endpoint               | Description             | Access     |
+| ------ | ---------------------- | ----------------------- | ---------- |
+| POST   | /api/messages/agency   | Send message (Agency)   | Agency     |
+| GET    | /api/messages/agency   | Get messages (Agency)   | Agency     |
+| POST   | /api/messages/traveler | Send message (Traveler) | Traveler   |
+| GET    | /api/messages/traveler | Get messages (Traveler) | Traveler   |
+| PUT    | /api/messages/:id/read | Mark message as read    | User/Admin |
+| DELETE | /api/messages/:id      | Delete message          | User/Admin |
 
-4. Start the development server:
+---
 
-    ```bash
-    npm run dev
-    ```
+## 🔔 Notification Routes
 
-    The server will be running on `http://localhost:3000`.
+| Method | Endpoint                    | Description              | Access     |
+| ------ | --------------------------- | ------------------------ | ---------- |
+| POST   | /api/notifications          | Create notification      | Admin      |
+| GET    | /api/notifications          | Get all notifications    | Admin      |
+| GET    | /api/notifications/user     | Get user's notifications | User       |
+| PUT    | /api/notifications/:id/read | Mark as read             | User/Admin |
+| DELETE | /api/notifications/:id      | Delete notification      | Admin      |
 
-## Available Scripts
+---
 
--   `npm run build`: Compiles TypeScript into JavaScript.
--   `npm run watch`: Watches for file changes and automatically compiles TypeScript.
--   `npm run start`: Starts the application in production mode.
--   `npm run start:dev`: Starts the application in development mode with hot-reloading using `nodemon`.
--   `npm run dev`: Runs the development server by compiling TypeScript, watching for changes, and using `nodemon` to restart the app.
--   `npm run clean`: Cleans the `dist` directory.
+## ❗ Dispute Routes
 
-## Technologies Used
+| Method | Endpoint          | Description            | Access   |
+| ------ | ----------------- | ---------------------- | -------- |
+| POST   | /api/disputes     | Raise a dispute        | Traveler |
+| GET    | /api/disputes     | Get all disputes       | Admin    |
+| GET    | /api/disputes/:id | Get dispute by ID      | Admin    |
+| PUT    | /api/disputes/:id | Resolve/Update Dispute | Admin    |
+| DELETE | /api/disputes/:id | Delete dispute         | Admin    |
 
--   **Node.js**: JavaScript runtime for building server-side applications.
--   **Express.js**: Fast, unopinionated, minimalist web framework for Node.js.
--   **TypeScript**: A statically typed superset of JavaScript.
--   **MongoDB**: NoSQL database for high performance and scalability.
--   **Mongoose**: MongoDB object modeling for Node.js.
+---
 
-## Contributing
+## ⚙️ Admin Settings Routes
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+| Method | Endpoint                 | Description          | Access |
+| ------ | ------------------------ | -------------------- | ------ |
+| POST   | /api/admin-settings      | Add setting          | Admin  |
+| GET    | /api/admin-settings      | Get all settings     | Admin  |
+| GET    | /api/admin-settings/:key | Get specific setting | Admin  |
+| PUT    | /api/admin-settings/:key | Update setting       | Admin  |
+| DELETE | /api/admin-settings/:key | Delete setting       | Admin  |
 
-## License
+---
 
-This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for more details.
+## 🖼️ Portfolio Routes
+
+| Method | Endpoint            | Description             | Access |
+| ------ | ------------------- | ----------------------- | ------ |
+| POST   | /api/portfolios     | Add portfolio item      | Agency |
+| GET    | /api/portfolios     | Get all portfolio items | Public |
+| GET    | /api/portfolios/:id | Get portfolio by ID     | Public |
+| PUT    | /api/portfolios/:id | Update portfolio        | Agency |
+| DELETE | /api/portfolios/:id | Delete portfolio        | Agency |
+
+---
+
+## 🌟 Review Routes
+
+| Method | Endpoint         | Description      | Access   |
+| ------ | ---------------- | ---------------- | -------- |
+| POST   | /api/reviews     | Post a review    | Traveler |
+| GET    | /api/reviews     | Get all reviews  | Public   |
+| GET    | /api/reviews/:id | Get review by ID | Public   |
+| DELETE | /api/reviews/:id | Delete review    | Admin    |
+
+---
+
+## 💳 Transaction Routes
+
+| Method | Endpoint              | Description           | Access     |
+| ------ | --------------------- | --------------------- | ---------- |
+| POST   | /api/transactions     | Create a transaction  | Traveler   |
+| GET    | /api/transactions     | Get all transactions  | Admin      |
+| GET    | /api/transactions/:id | Get transaction by ID | Admin/User |
+
+---
+
+## 📌 Notes
+
+- All `:id` params should be replaced with actual MongoDB document IDs.
+- Routes may return `401 Unauthorized` if the JWT token is missing or invalid.
+- Admin-only routes are restricted and require the authenticated user to have admin privileges.
+
+---
+
+# Author
+
+[Tareq Monower](https://github.com/tamimhasan19702)

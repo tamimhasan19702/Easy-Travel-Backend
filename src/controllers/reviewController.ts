@@ -62,7 +62,7 @@ export const getReviewsByAgency = async (req: Request, res: Response) => {
   }
 };
 
-const deleteReview = async (req: Request, res: Response) => {
+export const deleteReview = async (req: Request, res: Response) => {
   try {
     const review = await Review.findById(req.params.id);
 
@@ -78,6 +78,27 @@ const deleteReview = async (req: Request, res: Response) => {
 
     await review.deleteOne();
     res.status(200).json({ message: "Review deleted" });
+  } catch (error: any) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export const getAllReviews = async (req: Request, res: Response) => {
+  try {
+    const reviews = await Review.find().populate("reviewer", "name");
+    res.status(200).json(reviews);
+  } catch (error: any) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export const getReviewById = async (req: Request, res: Response) => {
+  try {
+    const review = await Review.findById(req.params.id).populate(
+      "reviewer",
+      "name"
+    );
+    res.status(200).json(review);
   } catch (error: any) {
     res.status(500).json({ message: error.message });
   }

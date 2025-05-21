@@ -9,6 +9,8 @@ import notificationRoutes from "./notificationRoutes.js";
 import disputeRoutes from "./disputeRoutes.js";
 import adminSettingRoutes from "./adminSettingRoutes.js";
 import portfolioItemRoutes from "./portfolioItemRoutes.js";
+import reviewRoutes from "./reviewRoutes.js";
+import transactionRoutes from "./transactionRoutes.js";
 
 const router = express.Router();
 
@@ -20,5 +22,7 @@ router.use("/notifications", notificationRoutes);
 router.use("/disputes", disputeRoutes);
 router.use("/admin-settings", adminSettingRoutes);
 router.use("/portfolio-items", portfolioItemRoutes);
+router.use("/reviews", reviewRoutes);
+router.use("/transactions", transactionRoutes);
 
 export default router;
